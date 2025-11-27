@@ -1,0 +1,77 @@
+.formulario {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  background: var(--blanco);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.formulario input,
+.formulario textarea,
+.formulario button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.formulario button {
+  background: var(--rosa);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.formulario button:hover {
+  background: var(--marron);
+}
+
+/* ===== PÁGINA DE CONTACTO ===== */
+.contacto {
+  display: flex;
+  justify-content: center; /* centra horizontalmente */
+  align-items: center;     /* centra verticalmente */
+  min-height: 80vh;        /* ocupa la altura de la pantalla */
+  padding: 20px;           /* espacio lateral en pantallas pequeñas */
+}
+
+.formulario {
+  max-width: 500px;
+  width: 100%;
+  padding: 20px;
+  background: var(--blanco);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/*REGISTRO*/
+.registro {
+  display: flex;
+  justify-content: center; /* centra horizontalmente */
+  align-items: center;     /* centra verticalmente */
+  min-height: 80vh;        /* altura suficiente para centrar */
+  padding: 20px;           /* espacio lateral en móviles */
+}
+
+.registro .formulario {
+  max-width: 500px;
+  width: 100%;
+  padding: 20px;
+  background: var(--blanco);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Agrega esto a styles.css si no existe */
+.formulario {
+  background: var(--blanco, #fff);
+  max-width: 350px;
+  margin: 40px auto;
+  padding: 32px 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+  text-align: center;
+}
+

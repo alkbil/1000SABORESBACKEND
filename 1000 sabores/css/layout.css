@@ -1,0 +1,40 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--crema);
+  color: var(--marron);
+  line-height: 1.6;
+}
+
+header {
+  background-color: var(--rosa);
+  padding: 20px;
+  text-align: center;
+  border-bottom: 3px solid var(--marron);
+}
+
+header h1 {
+  font-family: 'Pacifico', cursive;
+  color: var(--marron);
+  font-size: 2.5rem;
+}
+
+nav ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+nav ul li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--marron);
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: var(--celeste);
+}
