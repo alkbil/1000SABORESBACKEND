@@ -38,14 +38,14 @@ export const authService = {
 // Servicio de productos
 export const productService = {
   // Obtener todos los productos
-  getAll: async () => {
-    const response = await api.get('/products');
+  getAll: async (page = 0, size = 12) => {
+    const response = await api.get(`/products?page=${page}&size=${size}`);
     return response.data;
   },
 
   // Obtener productos activos
-  getActive: async () => {
-    const response = await api.get('/products/active');
+  getActive: async (page = 0, size = 12) => {
+    const response = await api.get(`/products/active?page=${page}&size=${size}`);
     return response.data;
   },
 

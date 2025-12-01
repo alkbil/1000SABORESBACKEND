@@ -1,7 +1,370 @@
-/* ESTILOS ESPECÍFICOS PARA EL PANEL DE ADMINISTRACIÓN */
-.admin-body {
-  background-color: #f5f7fa;
-  color: #333;
+/* Admin Panel Styles */
+
+.admin-page {
+  min-height: 100vh;
+  background-color: var(--crema);
+  padding: 30px 20px;
+}
+
+.admin-header {
+  text-align: center;
+  margin-bottom: 40px;
+  background: linear-gradient(135deg, var(--rosa) 0%, var(--marron) 100%);
+  color: white;
+  padding: 40px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.admin-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  font-family: 'Pacifico', cursive;
+}
+
+.admin-header p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+}
+
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-section {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.section-header h2 {
+  font-size: 1.8rem;
+  color: var(--marron);
+  margin: 0;
+}
+
+/* FORMULARIO */
+.form-container {
+  background-color: #f9f9f9;
+  padding: 25px;
+  border-radius: 10px;
+  border-left: 4px solid var(--rosa);
+  margin-bottom: 30px;
+}
+
+.form-container h3 {
+  color: var(--marron);
+  margin-bottom: 20px;
+  font-size: 1.3rem;
+}
+
+.product-form {
+  display: grid;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--marron);
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.form-group input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--rosa);
+  box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.1);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.form-actions button {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-success {
+  background-color: #27ae60;
+  color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+  background-color: #229954;
+  transform: scale(1.02);
+}
+
+.btn-success:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.btn-cancel {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background-color: #7f8c8d;
+  transform: scale(1.02);
+}
+
+/* TABLA DE PRODUCTOS */
+.products-table-container {
+  overflow-x: auto;
+}
+
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.products-table thead {
+  background-color: var(--marron);
+  color: white;
+}
+
+.products-table th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.products-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.products-table tbody tr:hover {
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+}
+
+.nombre-col {
+  font-weight: 600;
+  color: var(--rosa);
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.desc-col {
+  color: #666;
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.precio-col {
+  font-weight: 600;
+  color: var(--marron);
+  font-size: 1.05rem;
+}
+
+.stock-col {
+  text-align: center;
+}
+
+.stock-ok {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.stock-low {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.acciones-col {
+  text-align: center;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* BOTONES */
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background-color: var(--rosa);
+  color: white;
+  padding: 12px 24px;
+}
+
+.btn-primary:hover {
+  background-color: var(--marron);
+  transform: scale(1.05);
+}
+
+.btn-sm {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border: none;
+  background-color: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-edit {
+  font-size: 1.2rem;
+  color: var(--rosa);
+}
+
+.btn-edit:hover {
+  background-color: rgba(210, 105, 30, 0.1);
+  transform: scale(1.1);
+}
+
+.btn-delete {
+  font-size: 1.2rem;
+  color: #e74c3c;
+}
+
+.btn-delete:hover {
+  background-color: rgba(231, 76, 60, 0.1);
+  transform: scale(1.1);
+}
+
+/* MENSAJES */
+.loading,
+.no-products {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.loading {
+  color: var(--rosa);
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .admin-header {
+    padding: 30px 15px;
+  }
+
+  .admin-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .admin-section {
+    padding: 20px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .section-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+
+  .products-table {
+    font-size: 0.85rem;
+  }
+
+  .products-table th,
+  .products-table td {
+    padding: 10px;
+  }
+
+  .nombre-col,
+  .desc-col {
+    max-width: 80px;
+  }
+
+  .acciones-col {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .btn-sm {
+    padding: 6px 8px;
+    font-size: 1rem;
+  }
 }
 
 /* HEADER ADMIN */

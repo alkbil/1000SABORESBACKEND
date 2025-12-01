@@ -50,7 +50,11 @@ public class ProductService {
         product.setCategoria(productDetails.getCategoria());
         product.setImagenUrl(productDetails.getImagenUrl());
         product.setStock(productDetails.getStock());
-        product.setIsActive(productDetails.getIsActive());
+        
+        // Solo actualizar isActive si viene explícitamente en el request
+        if (productDetails.getIsActive() != null) {
+            product.setIsActive(productDetails.getIsActive());
+        }
 
         return productRepository.save(product);
     }

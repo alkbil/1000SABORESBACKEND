@@ -25,8 +25,20 @@ public class ProductController {
 
     @GetMapping
     @Operation(summary = "Listar todos los productos activos", description = "Obtiene la lista completa de productos disponibles")
-    public ResponseEntity<List<Product>> getAllActiveProducts() {
-        return ResponseEntity.ok(productService.getActiveProducts());
+    public ResponseEntity<List<Product>> getAllActiveProducts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "12") int size) {
+        List<Product> allProducts = productService.getActiveProducts();
+        
+        // Aplicar paginación manualmente
+        int start = page * size;
+        int end = Math.min(start + size, allProducts.size());
+        
+        if (start >= allProducts.size()) {
+            return ResponseEntity.ok(List.of());
+        }
+        
+        return ResponseEntity.ok(allProducts.subList(start, end));
     }
 
     @GetMapping("/{id}")

@@ -150,6 +150,27 @@ footer {
   text-decoration: none;
   color: var(--marron, #333);
   font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 5px 8px;
+  border-radius: 4px;
+}
+
+.site-header nav a:hover {
+  color: var(--rosa);
+  background-color: rgba(210, 105, 30, 0.1);
+}
+
+.site-header nav a.admin-link {
+  background-color: #e74c3c;
+  color: white;
+  padding: 6px 12px;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+.site-header nav a.admin-link:hover {
+  background-color: #c0392b;
+  color: white;
 }
 
 .cart-login a {
@@ -312,8 +333,111 @@ footer {
   margin-left: 10px;
 }
 
+/* ===== USER MENU & CART ===== */
+.cart-login {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.cart-login a {
+  white-space: nowrap;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.cart-login a:hover {
+  background-color: rgba(210, 105, 30, 0.1);
+}
+
+.user-authenticated {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 150px;
+}
+
+.user-greeting {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--marron, #333);
+  white-space: nowrap;
+}
+
+.logout-section {
+  display: flex;
+  align-items: center;
+}
+
+.logout-btn {
+  background-color: #c85a54;
+  color: var(--blanco);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.logout-btn:hover {
+  background-color: #a84a46;
+  transform: scale(1.05);
+}
+
+.user-not-authenticated {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.user-not-authenticated a {
+  color: var(--rosa, #e76f8a);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.user-not-authenticated a:hover {
+  color: var(--celeste, #4bb3fd);
+}
+
 /* ===== RESPONSIVE HERO ===== */
 @media (max-width: 768px) {
+  .site-header {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .site-header nav ul {
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    order: 3;
+  }
+
+  .cart-login {
+    order: 2;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .logout-section {
+    width: 100%;
+    justify-content: center;
+    order: 4;
+  }
+
+  .logout-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+
   .hero {
     flex-direction: column;
     text-align: center;

@@ -4,6 +4,7 @@ import com.milsabores.backend.service.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -49,7 +50,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authenticationManager) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
@@ -59,8 +60,10 @@ public class SecurityConfig {
                         .requestMatchers("/test/**").permitAll()
                         // Permitir acceso público a autenticación
                         .requestMatchers("/auth/**").permitAll()
-                        // Permitir acceso público a productos (lectura)
-                        .requestMatchers("/products", "/products/**").permitAll()
+                        // Permitir acceso público a lectura de productos (GET)
+                        .requestMatchers(HttpMethod.GET, "/products", "/products/**").permitAll()
+                        // Permitir acceso público a debug
+                        .requestMatchers("/debug/**").permitAll()
                         // Permitir acceso a Swagger
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
                         // Proteger el resto de endpoints
@@ -68,6 +71,7 @@ public class SecurityConfig {
                 );
 
         http.authenticationProvider(authenticationProvider());
+        http.authenticationManager(authenticationManager);
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

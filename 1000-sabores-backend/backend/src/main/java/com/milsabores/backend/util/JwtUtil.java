@@ -35,8 +35,15 @@ public class JwtUtil {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpiration);
 
+        // Agregar los roles/authorities al JWT como lista
+        java.util.List<String> authorities = userPrincipal.getAuthorities()
+                .stream()
+                .map(auth -> auth.getAuthority())
+                .toList();
+
         return Jwts.builder()
                 .subject(userPrincipal.getUsername())
+                .claim("authorities", authorities)
                 .issuedAt(now)
                 .expiration(expiryDate)
                 .signWith(getSigningKey())

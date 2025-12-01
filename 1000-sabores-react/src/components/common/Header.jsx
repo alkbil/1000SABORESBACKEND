@@ -33,6 +33,9 @@ const Header = () => {
           <li><Link to="/nosotros">Nosotros</Link></li>
           <li><Link to="/blogs">Blogs</Link></li>
           <li><Link to="/contacto">Contacto</Link></li>
+          {usuario?.role === 'ROLE_ADMIN' && (
+            <li><Link to="/admin" className="admin-link">🔐 Admin</Link></li>
+          )}
         </ul>
       </nav>
       
@@ -41,23 +44,26 @@ const Header = () => {
           🛒 Carrito (<span id="carrito-count">{totalItems}</span>)
         </Link>
         
-        <div className="user-menu">
-          {isAuthenticated ? (
-            <div className="user-authenticated">
-              <span>Hola, {usuario?.nombre || usuario?.email}</span>
-              <button onClick={handleLogout} className="logout-btn">
-                Cerrar sesión
-              </button>
-            </div>
-          ) : (
-            <div className="user-not-authenticated">
-              <Link to="/login">Iniciar sesión</Link>
-              <span> | </span>
-              <Link to="/registro">Registrarse</Link>
-            </div>
-          )}
-        </div>
+        {isAuthenticated ? (
+          <div className="user-authenticated">
+            <span className="user-greeting">Hola, {usuario?.nombre || usuario?.email}</span>
+          </div>
+        ) : (
+          <div className="user-not-authenticated">
+            <Link to="/login">Iniciar sesión</Link>
+            <span> | </span>
+            <Link to="/registro">Registrarse</Link>
+          </div>
+        )}
       </div>
+
+      {isAuthenticated && (
+        <div className="logout-section">
+          <button onClick={handleLogout} className="logout-btn">
+            🚪 Cerrar sesión
+          </button>
+        </div>
+      )}
     </header>
   );
 };

@@ -17,21 +17,21 @@ const Home = () => {
       nombre: 'Pastel de Chocolate',
       precio: 15.00,
       imagen: '/img/pastel-chocolate.jpg',
-      descripcion: 'Delicioso pastel de chocolate artesanal'
+      descripcion: 'Artesanal • 1kg'
     },
     {
       id: 2,
       nombre: 'Pastel de Fresas',
       precio: 18.00,
       imagen: '/img/pastel-frutosrojos.jpeg',
-      descripcion: 'Pastel fresco con fresas naturales'
+      descripcion: 'Artesanal • 1kg'
     },
     {
       id: 5,
       nombre: 'Cupcake de Fresa',
       precio: 5.00,
       imagen: '/img/cupcake-fresa.webp',
-      descripcion: 'Caja de 6 deliciosos cupcakes'
+      descripcion: 'Caja x 6'
     }
   ];
 

@@ -17,6 +17,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Cart from './pages/Cart';
 import TestAPI from './pages/TestAPI';
+import Admin from './pages/Admin';
 
 // Importar componentes
 import Header from './components/common/Header';
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/registro" element={<Register />} />
                 <Route path="/carrito" element={<Cart />} />
+                <Route path="/admin" element={<Admin />} />
                 <Route path="/test-api" element={<TestAPI />} />
               </Routes>
             </main>
