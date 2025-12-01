@@ -1,6 +1,6 @@
 -- Insertar usuario administrador si no existe
 INSERT INTO users (email, password, role, is_active, created_at, updated_at) 
-SELECT 'admin@1000sabores.com', '$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG3YB1tlRy.fqvM/BG', 'ROLE_ADMIN', true, NOW(), NOW()
+SELECT 'admin@1000sabores.com', '$2a$10$J2aAsgtYLpONQ3mVYsvHOeXvlou3o9gvatd22HcpSDP2Xv9Ocx3We', 'ROLE_ADMIN', true, NOW(), NOW()
 WHERE NOT EXISTS (SELECT 1 FROM users WHERE email = 'admin@1000sabores.com');
 
 -- Insertar usuario regular de prueba si no existe
