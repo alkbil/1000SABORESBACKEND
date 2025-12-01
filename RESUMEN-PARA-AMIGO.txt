@@ -1,0 +1,95 @@
+# 🎁 RESUMEN PARA TU AMIGO - 1000 SABORES
+
+## ¿Qué necesita tu amigo?
+
+Tu amigo solo necesita hacer esto en orden:
+
+### 1️⃣ Descargar
+```
+https://github.com/alkbil/1000SABORESBACKEND.git
+```
+
+### 2️⃣ Crear Base de Datos
+- Abrir Laragon → HeidiSQL
+- Archivo → Cargar SQL
+- Seleccionar: `SETUP-DATABASE-LARAGON.sql`
+- Ejecutar (F9)
+
+### 3️⃣ Configurar Backend
+- Editar: `1000-sabores-backend/backend/src/main/resources/application.properties`
+- Cambiar username/password si es necesario
+
+### 4️⃣ Configurar Frontend
+- Crear archivo: `1000-sabores-react/.env`
+- Poner: `REACT_APP_API_URL=http://localhost:8080/api`
+
+### 5️⃣ Ejecutar
+```
+Terminal 1: cd 1000-sabores-backend/backend && .\mvnw spring-boot:run
+Terminal 2: cd 1000-sabores-react && npm install && npm start
+```
+
+---
+
+## 📊 Lo que viene incluido
+
+| Componente | Cantidad | Detalles |
+|------------|----------|----------|
+| **Usuarios** | 2 | 1 Admin + 1 Regular (precargados) |
+| **Productos** | 15 | Todos activos en 5 categorías |
+| **Tablas BD** | 4 | users, products, orders, order_items |
+| **Endpoints API** | 10+ | GET, POST, PUT, DELETE de productos |
+| **Funciones** | Completas | Login, Admin, Carrito, Compras |
+
+---
+
+## 🔑 Credenciales Listas
+
+```
+Admin Panel:
+Email: admin@1000sabores.com
+Password: admin123
+
+Usuario Regular:
+Email: usuario@test.com
+Password: usuario123
+```
+
+---
+
+## ✅ Verificación Final
+
+Después de ejecutar, verificar:
+
+```
+✓ Backend: http://localhost:8080/api/swagger-ui (API docs)
+✓ Frontend: http://localhost:3002 (App en React)
+✓ Login: Entrar con admin@1000sabores.com / admin123
+✓ Admin: http://localhost:3002/admin (Panel de control)
+```
+
+---
+
+## 📞 Si hay problemas
+
+1. Verificar que Laragon está ejecutándose
+2. Verificar que script SQL se ejecutó sin errores
+3. Verificar que .env tiene la URL correcta
+4. Limpiar cache: Ctrl+Shift+Delete en navegador
+
+---
+
+## 📁 Archivos Importantes
+
+```
+📦 1000SABORESBACKEND (descargado del GitHub)
+├── SETUP-DATABASE-LARAGON.sql    ← Ejecutar primero
+├── INSTRUCCIONES-PARA-AMIGO.md   ← Leer esta guía detallada
+├── README.md                      ← Descripción del proyecto
+├── 1000-sabores-backend/          ← Backend (Java)
+└── 1000-sabores-react/            ← Frontend (React)
+```
+
+---
+
+**¡Listo! Todo está optimizado para que tu amigo pueda empezar en 15 minutos** ⚡
