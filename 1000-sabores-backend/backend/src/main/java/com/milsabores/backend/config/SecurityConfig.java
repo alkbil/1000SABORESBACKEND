@@ -64,6 +64,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/products", "/products/**").permitAll()
                         // Permitir acceso público a debug
                         .requestMatchers("/debug/**").permitAll()
+                        // Permitir acceso público a info de Transbank
+                        .requestMatchers(HttpMethod.GET, "/payments/transbank/info").permitAll()
                         // Permitir acceso a Swagger
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
                         // Proteger el resto de endpoints
@@ -82,6 +84,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:3000",
+                "http://localhost:3001",
                 "http://localhost:3002",
                 "http://98.84.132.246:3000",
                 "http://98.84.132.246"

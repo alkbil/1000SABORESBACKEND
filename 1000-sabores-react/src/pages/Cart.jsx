@@ -4,6 +4,10 @@ import { Link, Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
 import Swal from 'sweetalert2';
+import { 
+  initiateTransbankPayment, 
+  redirectToTransbank 
+} from '../services/transbankService';
 
 const Cart = () => {
   const { isAuthenticated } = useAuth();
@@ -79,6 +83,11 @@ const Cart = () => {
 
   // Validar formulario de pago
   const validarFormularioPago = () => {
+    if (metodoPago === 'transbank') {
+      // Transbank maneja su propia validación
+      return true;
+    }
+
     if (metodoPago === 'tarjeta') {
       const numeroTarjeta = datosTarjeta.numero.replace(/\s/g, '');
       const fechaExpiracion = datosTarjeta.fecha;
@@ -110,9 +119,16 @@ const Cart = () => {
   };
 
   // Procesar pago
-  const procesarPago = () => {
+  const procesarPago = async () => {
     if (!validarFormularioPago()) return;
     
+    // Si es Transbank, redirigir a su plataforma
+    if (metodoPago === 'transbank') {
+      await procesarPagoTransbank();
+      return;
+    }
+
+    // Para otros métodos (simulación)
     Swal.fire({
       title: 'Procesando pago...',
       text: 'Por favor espera mientras procesamos tu pedido',
@@ -138,6 +154,53 @@ const Cart = () => {
         window.location.href = '/';
       });
     }, 2000);
+  };
+
+  // Procesar pago con Transbank
+  const procesarPagoTransbank = async () => {
+    Swal.fire({
+      title: 'Procesando pago...',
+      text: 'Estamos preparando tu transacción con Transbank',
+      icon: 'info',
+      showConfirmButton: false,
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
+    try {
+      const sessionId = `order_${Date.now()}`;
+      
+      const result = await initiateTransbankPayment(total, sessionId);
+      
+      if (result.success) {
+        // Guardar información en sessionStorage para después
+        sessionStorage.setItem('transbankSession', JSON.stringify({
+          sessionId: result.sessionId,
+          amount: total,
+          timestamp: Date.now()
+        }));
+
+        // Redirigir a Transbank
+        redirectToTransbank(result.url, result.token);
+      } else {
+        Swal.fire({
+          title: 'Error',
+          text: result.error || 'No se pudo procesar el pago',
+          icon: 'error',
+          confirmButtonColor: '#d2691e'
+        });
+      }
+    } catch (error) {
+      console.error('Error en procesarPagoTransbank:', error);
+      Swal.fire({
+        title: 'Error',
+        text: 'Ocurrió un error al procesar el pago',
+        icon: 'error',
+        confirmButtonColor: '#d2691e'
+      });
+    }
   };
 
   // Continuar al formulario de pago
@@ -289,6 +352,21 @@ const Cart = () => {
                 <input 
                   type="radio" 
                   name="pago" 
+                  value="transbank"
+                  checked={metodoPago === 'transbank'}
+                  onChange={(e) => setMetodoPago(e.target.value)}
+                />
+                <span className="radio-custom"></span>
+                <div className="opcion-contenido">
+                  <strong>🏦 Transbank WebPay</strong>
+                  <small>Pago seguro con Transbank (tarjeta de crédito o débito)</small>
+                </div>
+              </label>
+
+              <label className="opcion-radio">
+                <input 
+                  type="radio" 
+                  name="pago" 
                   value="tarjeta"
                   checked={metodoPago === 'tarjeta'}
                   onChange={(e) => setMetodoPago(e.target.value)}
@@ -332,7 +410,7 @@ const Cart = () => {
             </div>
           </div>
 
-          {/* Datos de Tarjeta */}
+          {/* Datos de Tarjeta - Solo para tarjeta manual, no para Transbank */}
           {metodoPago === 'tarjeta' && (
             <div className="grupo-formulario tarjeta-datos">
               <h3>Datos de la Tarjeta</h3>
@@ -396,6 +474,27 @@ const Cart = () => {
                   />
                 </div>
               </div>
+            </div>
+          )}
+
+          {/* Aviso para Transbank */}
+          {metodoPago === 'transbank' && (
+            <div className="grupo-formulario" style={{
+              backgroundColor: '#e8f4f8',
+              borderLeft: '4px solid #0066cc',
+              padding: '15px',
+              borderRadius: '4px'
+            }}>
+              <h3>🏦 Información de Transbank WebPay</h3>
+              <p>Al hacer clic en "Completar Pago", serás redirigido a la plataforma segura de Transbank donde podrás:</p>
+              <ul style={{ marginLeft: '20px' }}>
+                <li>✅ Usar tu tarjeta de crédito o débito</li>
+                <li>✅ Acceder a tu banca en línea</li>
+                <li>✅ Realizar el pago de forma segura y encriptada</li>
+              </ul>
+              <p style={{ marginTop: '10px', fontSize: '0.9em', color: '#555' }}>
+                <strong>Nota:</strong> Tu información de pago es procesada directamente por Transbank, nunca pasamos tus datos.
+              </p>
             </div>
           )}
 

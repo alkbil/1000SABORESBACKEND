@@ -56,13 +56,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String path = request.getRequestURI();
         String method = request.getMethod();
         
+        // Remover context path (/api) si existe
+        if (path.startsWith("/api")) {
+            path = path.substring(4);
+        }
+        
         // Solo saltar para GET /products (lectura pública)
-        if (path.startsWith("/api/auth/register") || 
-            path.startsWith("/api/auth/login") ||
-            path.startsWith("/api/test/") || 
-            (path.startsWith("/api/products") && "GET".equalsIgnoreCase(method)) ||
-            path.startsWith("/api/swagger-ui") ||
-            path.startsWith("/api/v3/api-docs")) {
+        if (path.startsWith("/auth/register") || 
+            path.startsWith("/auth/login") ||
+            path.startsWith("/test/") || 
+            (path.startsWith("/products") && "GET".equalsIgnoreCase(method)) ||
+            path.startsWith("/payments/transbank/info") ||
+            path.startsWith("/swagger-ui") ||
+            path.startsWith("/v3/api-docs")) {
             filterChain.doFilter(request, response);
             return;
         }

@@ -16,6 +16,7 @@ import Blog from './pages/Blog';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Cart from './pages/Cart';
+import PaymentResult from './pages/PaymentResult';
 import TestAPI from './pages/TestAPI';
 import Admin from './pages/Admin';
 
@@ -31,18 +32,19 @@ function App() {
           <div className="App">
             <Header />
             <main>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/productos" element={<Products />} />
-                <Route path="/nosotros" element={<About />} />
-                <Route path="/blogs" element={<Blog />} />
-                <Route path="/contacto" element={<Contact />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/registro" element={<Register />} />
-                <Route path="/carrito" element={<Cart />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/test-api" element={<TestAPI />} />
-              </Routes>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/productos" element={<Products />} />
+              <Route path="/nosotros" element={<About />} />
+              <Route path="/blogs" element={<Blog />} />
+              <Route path="/contacto" element={<Contact />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/registro" element={<Register />} />
+              <Route path="/carrito" element={<Cart />} />
+              <Route path="/payment-result" element={<PaymentResult />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/test-api" element={<TestAPI />} />
+            </Routes>
             </main>
             <Footer />
           </div>
